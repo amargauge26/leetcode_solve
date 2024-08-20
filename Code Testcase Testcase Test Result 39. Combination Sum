@@ -1,0 +1,23 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        temp =[]
+        res = []
+        self.comb(len(candidates)-1,candidates,target,res,temp)
+
+        return res
+
+
+    def comb(self,ind,arr,t,res,temp):
+        if t==0:
+                if temp[:] not in res:
+                    res.append(temp[:])
+                return
+        if t<0 or ind<0:
+            return
+
+
+        temp.append(arr[ind])
+        self.comb(ind,arr,t-arr[ind],res,temp)
+
+        temp.pop()
+        self.comb(ind-1,arr,t,res,temp)
